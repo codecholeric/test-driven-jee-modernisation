@@ -56,11 +56,11 @@ public class JavaxPersistenceTests {
      */
     @ArchTest
     public static final ArchRule noIdFields = ArchRuleDefinition.priority(LOW)
-            .noClasses().should().setFieldWhere(TARGET_IS_ID);
+            .noClasses().should().accessFieldWhere(TARGET_IS_ID);
 
     @ArchTest
     public static final ArchRule noColumnFields = ArchRuleDefinition.priority(LOW)
-            .noClasses().should().setFieldWhere(TARGET_IS_COLUMN);
+            .noClasses().should().accessFieldWhere(TARGET_IS_COLUMN);
 
     /**
      * False Positive. @Generated value is set to Retention.RUNTIME, so should be OK?
@@ -68,7 +68,7 @@ public class JavaxPersistenceTests {
      */
     @ArchTest
     public static final ArchRule noGeneratedValues = ArchRuleDefinition.priority(LOW)
-            .noClasses().should().setFieldWhere(TARGET_IS_GENERATED_VALUE);
+            .noClasses().should().accessFieldWhere(TARGET_IS_GENERATED_VALUE);
 
 
     /**
@@ -77,7 +77,7 @@ public class JavaxPersistenceTests {
      */
     @ArchTest
     public static final ArchRule noPersistenceUnits = ArchRuleDefinition.priority(LOW)
-            .noClasses().should().setFieldWhere(TARGET_IS_PERSISTENCE_UNIT);
+            .noClasses().should().accessFieldWhere(TARGET_IS_PERSISTENCE_UNIT);
 
 
 }

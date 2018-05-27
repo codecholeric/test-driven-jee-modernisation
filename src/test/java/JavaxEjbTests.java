@@ -29,13 +29,16 @@ public class JavaxEjbTests {
             JavaAccess.Functions.Get.<JavaFieldAccess, AccessTarget.FieldAccessTarget>target()
                     .is(annotatedWith(EJB.class));
 
+    // I don't know for certain what your intention was, setField means explicitly "write to a field" i.e. what a Setter does
+    // Thus the class didn't violate this rule, as it only does 'getField', i.e. read from the field.
+    // 'accessField' just covers both, so it's probably, what you want?
     /**
      * False Positive. @EJB is set to Retention.RUNTIME, so should be OK?
      * @see org.superbiz.servlet.RunAsServlet
      * */
     @ArchTest
     public static final ArchRule noEjbAnnotatedFields = ArchRuleDefinition.priority(LOW)
-            .noClasses().should().setFieldWhere(TARGET_IS_EJB);
+            .noClasses().should().accessFieldWhere(TARGET_IS_EJB);
 
     @ArchTest
     public static final ArchRule noLocal = ArchRuleDefinition.priority(MEDIUM).noClasses()
